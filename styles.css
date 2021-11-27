@@ -1,6 +1,6 @@
 *
 {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
     
 }
@@ -12,22 +12,38 @@
     align-items: right;
 }
 
-h4 {
+h2 {
     justify-content: center;
     align-items: center;
     display: flex;
+    border: solid rgb(47, 152, 212); /*to be removed later */
 }
 
-#questions {
+#hero {
     display: flex;
-    display: inline; 
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
+     border: solid  rgb(47, 152, 212); /*to be removed later */
+
 }
 
-#submitButton {
+#submitButton, #darkMode {
 margin-top: 20px;
 border-radius: 10%;
-
+color: rgb(15, 13, 13);
+background-color: rgb(212, 211, 200);
+font-size: 1.5em;
 
 }
+
+#radioBtnQuestions h3 {
+margin-bottom: 5px;  
+
+}
+
+input, label, select {
+    font-size: 1.2em;
+       
+}
+
