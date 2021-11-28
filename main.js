@@ -5,13 +5,13 @@ let darkModeBtn = document.querySelector("#darkMode");
 let i = 0;
 
 darkModeBtn.addEventListener("click", () => {
-  if (i === 0) {  
-    document.body.style.background = "black";     
+  if (i === 0) {
+    document.body.style.background = "rgb(51,58,70)";
     document.body.style.color = "white";
     darkModeBtn.textContent = "light mode";
     i = 1;
-  } else if (i === 1) {       
-    document.body.style.background = "white";
+  } else if (i === 1) {
+    document.body.style.background = "rgb(232,233,249)";
     document.body.style.color = "black";
     darkModeBtn.textContent = "dark mode";
     i = 0;
@@ -23,64 +23,79 @@ darkModeBtn.addEventListener("click", () => {
 let questions = [
   {
     id: "Q1",
+    number: "1",
     inputType: "radio",
-    question: "1) 1 + 1 is 2",
+    question: "Mean is the average of the data points present in the dataset.",
     options: [true, false],
     answer: ["true"],
   },
   {
     id: "Q2",
+    number: "2",
     inputType: "radio",
-    question: "2) 1 - 1 is 2",
+    question: "The product of two positive numbers is NOT positive.",
     options: [true, false],
     answer: ["false"],
   },
   {
     id: "Q3",
+    number: "3",
     inputType: "radio",
-    question: "3) 1 * 1 is 1",
+    question: "The diagonals of a square intersect at right angles.",
     options: [true, false],
     answer: ["true"],
   },
   {
     id: "Q4",
-    inputType: "checkBox",
-    question: "4) Square root of 25",
-    options: ["25", "-5", "5", "-25", "none"],
-    answer: ["-5", "5"],
+    number: "4",
+    inputType: "dropDown",
+    question: "What is the length of x?",    
+    image: "img/rightangle.png",
+    options: ["5", "7", "6"],
+    answer: ["5"],
   },
   {
     id: "Q5",
+    number: "5",
     inputType: "dropDown",
-    question: "5) Sum of the angles of a triangle is:",
-    options: ["180 degree", "360 degree", "90 degree"],
-    answer: ["180 degree"],
+    question: "What is the measure of angle A in the figure below? Choose the right option.",
+    image: "img/Geometry.png",
+    options: ["51 degrees", "42 degrees", "87 degrees"],
+    answer: ["87 degrees"],
   },
   {
     id: "Q6",
+    number: "6",
     inputType: "dropDown",
-    question: "6) Choose the right answer (4 – 5) – (13 – 18 + 2):",
-    options: ["-2", "2", "-1"],
-    answer: ["2"],
+    question: "Which of the following pairs could be the length and width of the rectangle? ",
+    image: "img/Algebra.png",
+    options: ["4x and 6x", "2 and 2x - 3", "4 and x - 6"],
+    answer: ["2 and 2x - 3"],
   },
   {
     id: "Q7",
-    inputType: "dropDown",
-    question: "7) Approximate value of pi ( π ) is: ",
-    options: ["22", "22.7", "3.14"],
-    answer: ["3.14"],
-  },
+    number: "7",
+    inputType: "checkBox",
+    question: "(Multiple choice) Which of the below fractions convert to 0.25 in decimal form?",
+    options: ["25/125", "25/100", "1/4", "1/25", "2/10"],
+    answer: ["25/100", "1/4"],
+  },  
 ];
 
 //------functions for creating the questions and options------//
 
 //radio buttons
-let radioButton = (question, values, name) => {
+let radioButton = (question, values, name, number) => {
   let heroQuestions = document.querySelector("#questions");
 
   let eachQuestion = document.createElement("div");
   eachQuestion.id = "individualQuestion";
   heroQuestions.appendChild(eachQuestion);
+
+  let questionNumber = document.createElement("h2");
+  questionNumber.textContent = `Question ${number}`;
+  questionNumber.style.color = "red";
+  eachQuestion.appendChild(questionNumber);
 
   let questionH3 = document.createElement("h3");
   questionH3.textContent = question;
@@ -96,16 +111,25 @@ let radioButton = (question, values, name) => {
     let labelValue = document.createElement("label");
     labelValue.innerHTML += questionInput.value;
     eachQuestion.appendChild(labelValue);
+
+    let breakTag = document.createElement("br");
+    eachQuestion.appendChild(breakTag);
+
   });
 };
 
 //checkbox
-let checkBox = (question, values) => {
+let checkBox = (question, values, number) => {
   let heroQuestions = document.querySelector("#questions");
 
   let eachQuestion = document.createElement("div");
   eachQuestion.id = "individualQuestion";
   heroQuestions.appendChild(eachQuestion);
+
+  let questionNumber = document.createElement("h2");
+  questionNumber.textContent = `Question ${number}`;
+  questionNumber.style.color = "red";
+  eachQuestion.appendChild(questionNumber);
 
   let questionH3 = document.createElement("h3");
   questionH3.textContent = question;
@@ -121,20 +145,35 @@ let checkBox = (question, values) => {
     let labelValue = document.createElement("label");
     labelValue.innerHTML += questionInput.value;
     eachQuestion.appendChild(labelValue);
+
+    let breakTag = document.createElement("br");
+    eachQuestion.appendChild(breakTag);
   });
 };
 
 //dropdowns
-let dropDown = (question, values, name) => {
+let dropDown = (question, values, name, image, number) => {
   let heroQuestions = document.querySelector("#questions");
 
   let eachQuestion = document.createElement("div");
   eachQuestion.id = "individualQuestion";
   heroQuestions.appendChild(eachQuestion);
 
+  let questionNumber = document.createElement("h2");
+  questionNumber.textContent = `Question ${number}`;
+  questionNumber.style.color = "red";
+  eachQuestion.appendChild(questionNumber);
+
   let questionH3 = document.createElement("h3");
   questionH3.textContent = question;
   eachQuestion.appendChild(questionH3);
+
+if (image){
+  let questionImg = document.createElement("img");
+  questionImg.src = image;
+  questionImg.id = `image${name}`;
+  
+  heroQuestions.appendChild(questionImg); }
 
   let selectForDropDown = document.createElement("select");
   selectForDropDown.id = name;
@@ -158,11 +197,11 @@ let dropDown = (question, values, name) => {
 
 questions.forEach((object) => {
   if (object.inputType == "radio") {
-    radioButton(object.question, object.options, object.id);
+    radioButton(object.question, object.options, object.id, object.number);
   } else if (object.inputType == "checkBox") {
-    checkBox(object.question, object.options);
+    checkBox(object.question, object.options, object.number);
   } else if (object.inputType == "dropDown") {
-    dropDown(object.question, object.options, object.id);
+    dropDown(object.question, object.options, object.id, object.image, object.number);
   }
 });
 
@@ -173,16 +212,17 @@ questions.forEach((object) => {
 let RadioBtnCheck = (correctAnswer, name) => {
   let radioBtnOptions = document.querySelector(`input[name='${name}']`);
   console.log(!radioBtnOptions.checked);
-  
-    let userAnswer = document.querySelector(`input[name='${name}']:checked`);
-    console.log(userAnswer);
 
-    if (!userAnswer){ return userAnswer = 0}
-    if (userAnswer.value === correctAnswer) {
-      return 1;
-    }
-    return 0;
-  
+  let userAnswer = document.querySelector(`input[name='${name}']:checked`);
+  console.log(userAnswer);
+
+  if (!userAnswer) {
+    return (userAnswer = 0);
+  }
+  if (userAnswer.value === correctAnswer) {
+    return 1;
+  }
+  return 0;
 };
 
 //for checkboxes
@@ -234,14 +274,23 @@ submit.addEventListener("click", () => {
 
   //to get the message on DOM
 
-  let messageTag = document.querySelector("#resultMessage");  
+  let messageTag = document.querySelector("#resultMessage");
   messageTag.textContent = "";
+  
+
   if (totalScore == 7) {
     messageTag.textContent =
       "Congratulations! You got all the answers right! Your score is " +
-      totalScore +       ".";
+      totalScore +
+      ".";
     messageTag.style.color = "green";
     messageTag.style.fontWeight = "bold";
+
+    let trophy = document.createElement("img");
+    trophy.src = "img/trophy.png";
+    trophy.style.width = "25px";
+    trophy.style.height = "25px";
+    messageTag.appendChild(trophy);
   } else if (totalScore > 7 / 2) {
     messageTag.textContent =
       "You scored " + totalScore + " out of " + questions.length + ".";
