@@ -6,14 +6,12 @@ let i = 0;
 
 darkModeBtn.addEventListener("click", () => {
   if (i === 0) {
-    document.body.style.background = "rgb(51,58,70)";
-    document.body.style.color = "white";
-    darkModeBtn.textContent = "light mode";
+    document.body.style.background = "rgb(17,17,17)";
+    document.body.style.color = "white";    
     i = 1;
   } else if (i === 1) {
-    document.body.style.background = "rgb(232,233,249)";
-    document.body.style.color = "black";
-    darkModeBtn.textContent = "dark mode";
+    document.body.style.background = "rgb(235,235,235)";
+    document.body.style.color = "black";    
     i = 0;
   }
 });

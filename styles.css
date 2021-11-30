@@ -1,38 +1,82 @@
 * {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  /* max-width: 600px; */
-  /* margin: auto;   */
+  box-sizing: border-box;
+ }
 
-  /* border:rgb(206, 53, 53) solid; */
-}
-#changeColorDiv {
-  margin: 0;
-  padding: 0;
+ #mainContainer {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ /* Toggle styling */
+
+ #changeColorDiv {
+  padding-left: 70%;
   display: flex;
-  justify-content: right;
-  align-items: right;
+ }
+
+#changeColorDiv > input[type="checkbox"] {
+  width: 0;
+  height: 0;
+  visibility: hidden;  
 }
 
-h2.heading {
-  justify-content: center;
+#changeColorDiv > label {
+  display: flex;
   align-items: center;
-  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  width: 50px;
+  height: 26px;
+  background-color: black;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s;
+ 
+  }
+/* Styling for the ball inside the toggle */
+#changeColorDiv > label::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  background-color: whitesmoke;
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  bottom: 3px;    
+  transition: 0.5s;
 }
 
-#hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#changeColorDiv > input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+  background-color: black;
 }
 
-#submitButton,
-#darkMode {
+#changeColorDiv > input:checked + label {
+  background-color: white;
+}
+
+.fa-sun-o {
+  color: orange; 
+}
+
+.fa-moon-o {
+  color:white;  
+}
+
+/* Submit Button */
+#submitButton
+{
   margin-top: 20px;
-  border-radius: 10%;
+  border-radius: 100px;
   color: rgb(15, 13, 13);
   background-color: rgb(212, 211, 200);
-  font-size: 1.5em;
+  font-size: 1.5em; 
 }
 
 #radioBtnQuestions h3 {
@@ -45,22 +89,20 @@ select {
   font-size: 1.2em;
 }
 
+/* styling the images */
 #imageQ4 {
-
 width: 200px;
 height: 275px;
 margin-top: 5px;
 }
 
 #imageQ5 {
-
     width: 275px;
     height: 200px;
     margin-top: 5px;
  }
 
  #imageQ6 {
-
     width: 200px;
     height: 105px;
     margin-top: 5px;
